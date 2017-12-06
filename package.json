@@ -1,6 +1,6 @@
 {
   "name": "time-fix-plugin",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Fix startTime for webpack watcher",
   "repository": {
     "url": "egoist/time-fix-plugin",
@@ -15,7 +15,8 @@
     "lint": "xo"
   },
   "author": "egoist <0x142857@gmail.com>",
-  "license": "MIT",  "dependencies": {},
+  "license": "MIT",
+  "dependencies": {},
   "devDependencies": {
     "eslint-config-rem": "^3.0.0",
     "xo": "^0.18.0"
