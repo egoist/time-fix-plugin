@@ -14,14 +14,14 @@ module.exports = class TimeFixPlugin {
       return _this.watching
     }
 
-    compiler.hooks.watchRun.tap('timefix-plugin', compiler => {
+    compiler.hooks.watchRun.tap('time-fix-plugin', compiler => {
       if (this.watching) {
         this.watching.startTime += this.watchOffset
         this.offsetApplied = true
       }
     })
 
-    compiler.hooks.done.tap('timefix-plugin', stats => {
+    compiler.hooks.done.tap('time-fix-plugin', stats => {
       if (this.watching && this.offsetApplied) {
         stats.startTime -= this.watchOffset
       }
