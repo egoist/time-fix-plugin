@@ -2,6 +2,7 @@ module.exports = class TimeFixPlugin {
   constructor(watchOffset = 11000) {
     this.watchOffset = watchOffset
     this.watching = null
+    this.offsetApplied = false
   }
 
   apply(compiler) {
@@ -16,13 +17,13 @@ module.exports = class TimeFixPlugin {
     compiler.hooks.watchRun.tap('timefix-plugin', compiler => {
       if (this.watching) {
         this.watching.startTime += this.watchOffset
-        this.watching.watchOffset = this.watchOffset
+        this.offsetApplied = true
       }
     })
 
     compiler.hooks.done.tap('timefix-plugin', stats => {
-      if (this.watching) {
-        stats.startTime -= this.watching.watchOffset || 0
+      if (this.watching && this.offsetApplied) {
+        stats.startTime -= this.watchOffset
       }
     })
   }
