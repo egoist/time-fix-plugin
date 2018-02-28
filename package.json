@@ -1,6 +1,6 @@
 {
   "name": "time-fix-plugin",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Fix startTime for webpack watcher",
   "repository": {
     "url": "egoist/time-fix-plugin",
