@@ -1,19 +1,29 @@
-
 module.exports = class TimeFixPlugin {
-  constructor(timefix = 11000) {
-    this.timefix = timefix
+  constructor(watchOffset = 11000) {
+    this.watchOffset = watchOffset
+    this.watching = null
+    this.offsetApplied = false
   }
 
   apply(compiler) {
-    compiler.plugin('watch-run', (watching, callback) => {
-      this.hasWatcher = true
-      watching.startTime += this.timefix
-      callback()
+    const watch = compiler.watch
+    const _this = this
+
+    compiler.watch = function() {
+      _this.watching = watch.apply(this, arguments)
+      return _this.watching
+    }
+
+    compiler.hooks.watchRun.tap('time-fix-plugin', compiler => {
+      if (this.watching) {
+        this.watching.startTime += this.watchOffset
+        this.offsetApplied = true
+      }
     })
 
-    compiler.plugin('done', stats => {
-      if (this.hasWatcher) {
-        stats.startTime -= this.timefix
+    compiler.hooks.done.tap('time-fix-plugin', stats => {
+      if (this.watching && this.offsetApplied) {
+        stats.startTime -= this.watchOffset
       }
     })
   }

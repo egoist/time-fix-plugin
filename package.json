@@ -16,9 +16,12 @@
   },
   "author": "egoist <0x142857@gmail.com>",
   "license": "MIT",
-  "dependencies": {},
+  "peerDependencies": {
+    "webpack": ">=4.0.0"
+  },
   "devDependencies": {
     "eslint-config-rem": "^3.0.0",
+    "webpack": "^4.0.1",
     "xo": "^0.18.0"
   },
   "xo": {
