@@ -7,9 +7,12 @@ Why? https://github.com/webpack/watchpack/issues/25
 
 ## Install
 
+
 ```bash
 npm i time-fix-plugin
 ```
+
+This is for webpack v4 and above, for lower version please use `time-fix-plugin@1`.
 
 ## Usage
 
