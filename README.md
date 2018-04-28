@@ -22,9 +22,20 @@ const TimeFixPlugin = require('time-fix-plugin')
 
 module.exports = {
   plugins: [
-    new TimeFixPlugin()
+    new TimeFixPlugin(),
+    // ...other plugins
   ]
 }
+```
+
+## Development
+
+```bash
+# without timefix
+node example/run
+
+# with timefix
+node example/run --timefix
 ```
 
 ## Contributing
