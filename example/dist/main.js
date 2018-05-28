@@ -78,7 +78,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("const a = 1\n\n\n//# sourceURL=webpack:///./example/index.js?");
+eval("const a = 1\n\n//# sourceURL=webpack:///./example/index.js?");
 
 /***/ })
 

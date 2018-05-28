@@ -13,7 +13,7 @@ module.exports = class TimeFixPlugin {
       return watching
     }
 
-    compiler.hooks.afterCompile.tap('time-fix-plugin', () => {
+    compiler.hooks.watchRun.tap('time-fix-plugin', () => {
       if (watching) {
         watching.startTime += this.watchOffset
         offsetApplied = true
