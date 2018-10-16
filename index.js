@@ -4,24 +4,18 @@ module.exports = class TimeFixPlugin {
   }
 
   apply(compiler) {
+    const context = this
     const watch = compiler.watch
     let watching
-    let offsetApplied
 
     compiler.watch = function () {
       watching = watch.apply(this, arguments)
+      watching.startTime += context.watchOffset
       return watching
     }
 
-    compiler.hooks.watchRun.tap('time-fix-plugin', () => {
-      if (watching) {
-        watching.startTime += this.watchOffset
-        offsetApplied = true
-      }
-    })
-
     compiler.hooks.done.tap('time-fix-plugin', stats => {
-      if (offsetApplied) {
+      if (watching) {
         stats.startTime -= this.watchOffset
       }
     })
