@@ -4,12 +4,13 @@ module.exports = class TimeFixPlugin {
   }
 
   apply(compiler) {
+    const context = this
     const watch = compiler.watch
     let watching
 
     compiler.watch = function () {
       watching = watch.apply(this, arguments)
-      watching.startTime += this.watchOffset
+      watching.startTime += context.watchOffset
       return watching
     }
 
