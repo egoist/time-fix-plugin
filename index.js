@@ -7,6 +7,7 @@ module.exports = class TimeFixPlugin {
     const context = this
     const watch = compiler.watch
     let watching
+    let fixed
 
     // Modify the time for first run
     compiler.watch = function () {
@@ -17,15 +18,16 @@ module.exports = class TimeFixPlugin {
 
     // Modify the time for subsequent runs
     compiler.hooks.watchRun.tap('time-fix-plugin', () => {
-      if (watching) {
+      if (watching && !fixed) {
         watching.startTime += this.watchOffset
       }
     })
 
     // Reset time
     compiler.hooks.done.tap('time-fix-plugin', stats => {
-      if (watching) {
+      if (watching && !fixed) {
         stats.startTime -= this.watchOffset
+        fixed = true
       }
     })
   }
