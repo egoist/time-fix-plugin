@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "eslint-config-rem": "^3.0.0",
-    "webpack": "^4.0.1",
+    "webpack": "^4.31.0",
     "xo": "^0.18.0"
   },
   "xo": {
