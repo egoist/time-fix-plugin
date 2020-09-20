@@ -26,6 +26,7 @@ module.exports = class TimeFixPlugin {
     // Reset time
     compiler.hooks.done.tap('time-fix-plugin', stats => {
       if (watching && !fixed) {
+        // webpack 5: #3
         if (stats.compilation.startTime) {
           stats.compilation.startTime -= this.watchOffset
         } else {
