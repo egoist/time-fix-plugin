@@ -32,3 +32,6 @@ jobs:
           name: test
           command: npm run test
 
+      - run:
+          name: release
+          command: npx semantic-release
